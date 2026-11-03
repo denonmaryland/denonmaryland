@@ -73,38 +73,39 @@ const icons = {
   </svg>`,
 };
 
-// ---------- project cards ----------
+// ---------- project cards (color blocks: art panel on top, project color below) ----------
 const projects = [
-  { id: "theme-studio", icon: "theme", glow: "#22D3B4", name: "Theme Studio",
-    line: "Every Omarchy theme, one click from the bar. Browse, apply, rotate with the sun, or install from any link.",
-    meta: "Omarchy plugin · QML · Python" },
-  { id: "hello-lock", icon: "lock", glow: "#7AA2F7", name: "Hello Lock",
-    line: "A lock screen that greets you: your name and logo, a CRT power-down, eleven power-on animations.",
-    meta: "Omarchy plugin · QML · GLSL" },
-  { id: "tricky-tiles", icon: "tiles", glow: "#BB9AF7", name: "Tricky Tiles",
-    line: "Spring physics for window and workspace switches, with a live preview and swipes that follow your fingers.",
-    meta: "Omarchy plugin · Lua · QML" },
-  { id: "softly", icon: "softly", glow: "#4C8DFF", name: "Softly",
-    line: "Tap a key, speak, tap again. Whisper dictation that runs on your machine, on macOS, Windows and Omarchy.",
-    meta: "Swift · C# / .NET · QML" },
+  { id: "theme-studio", icon: "theme", block: "#22D3B4", ink: "#04211C", body: "#0A3B33", name: "Theme Studio",
+    line: "Every Omarchy theme, one click from the bar." },
+  { id: "hello-lock", icon: "lock", block: "#7AA2F7", ink: "#0B1630", body: "#14244A", name: "Hello Lock",
+    line: "A lock screen that greets you, with eleven power-on animations." },
+  { id: "tricky-tiles", icon: "tiles", block: "#BB9AF7", ink: "#1E1036", body: "#2E1B4F", name: "Tricky Tiles",
+    line: "Spring physics for window and workspace switches." },
+  { id: "softly", icon: "softly", block: "#4C8DFF", ink: "#061634", body: "#0B2250", name: "Softly",
+    line: "Tap a key, speak, tap again. Local Whisper dictation." },
 ];
 
-const CW = 440, CH = 244;
-const cardHtml = (p, c, mode) => base(CW, CH, `
-.card{position:absolute;inset:0;border-radius:16px;background:${c.card};border:1px solid ${c.border};overflow:hidden;padding:24px 26px}
-.glow{position:absolute;left:-40px;top:-70px;width:300px;height:220px;border-radius:50%;
-  background:radial-gradient(closest-side,${p.glow}${mode === "dark" ? "2E" : "1F"},transparent);pointer-events:none}
-.icon{position:relative;height:64px;display:flex;align-items:center}
-.icon svg{height:58px;width:auto}
-h2{position:relative;margin-top:14px;font-size:23px;font-weight:700;letter-spacing:-0.4px;color:${c.text}}
-p{position:relative;margin-top:6px;font-size:14.5px;line-height:21px;color:${c.muted};max-width:384px}
-.meta{position:absolute;left:26px;right:26px;bottom:20px;display:flex;justify-content:space-between;align-items:center;
-  font-size:11.5px;color:${c.faint};letter-spacing:0.1px}
-.arrow{font-family:Inter;font-size:15px;color:${c.muted}}
-`, `<div class="card"><div class="glow"></div>
-  <div class="icon">${icons[p.icon](c)}</div>
-  <h2>${p.name}</h2><p>${p.line}</p>
-  <div class="meta mono"><span>${p.meta}</span><span class="arrow">↗</span></div></div>`);
+// Art panel tones per mode; the colour block is the same in both.
+const ART = {
+  dark: { panel: "#161B22", tileA: "#21262D", tileStroke: "#30363D", ink: "#E6E8EE" },
+  light: { panel: "#EEF1F5", tileA: "#DDE2E9", tileStroke: "#C5CDD6", ink: "#2B3140" },
+};
+
+const CW = 208, CH = 326;
+const cardHtml = (p, mode) => {
+  const a = ART[mode];
+  const ic = { ...a, hole: a.panel };
+  return base(CW, CH, `
+.card{position:absolute;inset:0;border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.art{height:170px;background:${a.panel};display:flex;align-items:center;justify-content:center}
+.art svg{${p.icon === "softly" ? "width:176px;height:auto" : "width:auto;height:72px"}}
+.block{flex:1;background:${p.block};padding:20px 18px 18px;display:flex;flex-direction:column;gap:8px}
+h2{font-size:20px;font-weight:700;letter-spacing:-0.4px;color:${p.ink}}
+p{font-size:14px;line-height:20px;color:${p.body};flex:1}
+.cta{font-size:13px;font-weight:600;color:${p.ink}}
+`, `<div class="card"><div class="art">${icons[p.icon](ic)}</div>
+  <div class="block"><h2>${p.name}</h2><p>${p.line}</p><span class="cta">View repo →</span></div></div>`);
+};
 
 // ---------- header ----------
 const HW = 880, HH = 200;
@@ -143,5 +144,5 @@ function shot(name, html, w, h) {
 
 for (const mode of ["dark", "light"]) {
   shot(`header-${mode}`, headerHtml(T[mode]), HW, HH);
-  for (const p of projects) shot(`${p.id}-${mode}`, cardHtml(p, T[mode], mode), CW, CH);
+  for (const p of projects) shot(`${p.id}-${mode}`, cardHtml(p, mode), CW, CH);
 }

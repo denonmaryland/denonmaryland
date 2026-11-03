@@ -43,12 +43,10 @@
 ### Projects
 
 <p>
-<a href="https://github.com/denonmaryland/omarchy-theme-studio"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/theme-studio-dark.png"><img alt="Theme Studio: every Omarchy theme, one click from the bar" src="assets/theme-studio-light.png" width="49%"></picture></a>
-<a href="https://github.com/denonmaryland/hello-lock"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/hello-lock-dark.png"><img alt="Hello Lock: a lock screen that greets you" src="assets/hello-lock-light.png" width="49%"></picture></a>
-</p>
-<p>
-<a href="https://github.com/denonmaryland/omarchy-tricky-tiles"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/tricky-tiles-dark.png"><img alt="Tricky Tiles: spring physics for window and workspace switches" src="assets/tricky-tiles-light.png" width="49%"></picture></a>
-<a href="https://github.com/denonmaryland/softly"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/softly-dark.png"><img alt="Softly: local Whisper dictation for macOS, Windows and Omarchy" src="assets/softly-light.png" width="49%"></picture></a>
+<a href="https://github.com/denonmaryland/omarchy-theme-studio"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/theme-studio-dark.png"><img alt="Theme Studio: every Omarchy theme, one click from the bar" src="assets/theme-studio-light.png" width="24%"></picture></a>
+<a href="https://github.com/denonmaryland/hello-lock"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/hello-lock-dark.png"><img alt="Hello Lock: a lock screen that greets you" src="assets/hello-lock-light.png" width="24%"></picture></a>
+<a href="https://github.com/denonmaryland/omarchy-tricky-tiles"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/tricky-tiles-dark.png"><img alt="Tricky Tiles: spring physics for window and workspace switches" src="assets/tricky-tiles-light.png" width="24%"></picture></a>
+<a href="https://github.com/denonmaryland/softly"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/softly-dark.png"><img alt="Softly: local Whisper dictation for macOS, Windows and Omarchy" src="assets/softly-light.png" width="24%"></picture></a>
 </p>
 
 ### How I build
